@@ -7,7 +7,7 @@ public class Hacker : MonoBehaviour
 
     enum Screen { MainMenu, Password, Win }
     Screen currentScreen = Screen.MainMenu;
-    string menuHint = "You may type menu at any time.";
+    const string menuHint = "You may type menu at any time.\nType exit or press esc to exit.";
 
 
     // Start is called before the first frame update
@@ -34,6 +34,10 @@ public class Hacker : MonoBehaviour
         {
             ShowMainMenu();
         }
+        else if (input == "exit")
+        {
+            Application.Quit();
+        }
         else if (currentScreen == Screen.MainMenu)
         {
             RunMainMenu(input);
@@ -41,8 +45,16 @@ public class Hacker : MonoBehaviour
         else if (currentScreen == Screen.Password)
         {
             RunGame(input);
-        }
+        }     
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     void RunGame(string input)
